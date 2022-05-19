@@ -1,4 +1,4 @@
-How to run test cases:=================================================================
+How to run test cases:================================================
 1) Right click on "Rewards.NTest" project.
 2) Select "Run Tests" option.
 3) It will open new window and automatically run all the test methods.
@@ -14,7 +14,7 @@ How to build the solution:============================================
 
 
 
-How to run api:====================================================
+How to run api:=======================================================
 1) Open RewardsController file in Api folder in Rewards.API project
 2) Then click "IIS express" or "F5"
 3) It will open browser chrome or edge
@@ -22,7 +22,7 @@ How to run api:====================================================
 5) In that swagger url we have api documentation with internal postman
 
 
-Softwares used:============================================
+Softwares used:=======================================================
 1) OS:windows 10
 2) IDE:Visual studio 2019 enterprise
 3) Framework: Asp.Net core 3.1
@@ -33,7 +33,7 @@ Api Documentation:====================================================
 1)Swagger package used for api documentation.
 
 
-Handling Exception:=========================================
+Handling Exception:==================================================
 1) Here "GlobalExceptionFilter" class used to handle exceptions apis level
 
 
@@ -43,5 +43,5 @@ Logging:=============================================================
 
 
 
-Test Cases:============================================================
+Test Cases:==========================================================
 1) Nunit test framework used to write the test cases
