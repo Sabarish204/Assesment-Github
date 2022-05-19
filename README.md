@@ -23,10 +23,10 @@ How to run api:====================================================
 
 
 Softwares used:============================================
-OS:windows 10
-IDE:Visual studio 2019 enterprise
-Framework: Asp.Net core 3.1
-SDK:Asp.Net core 3.X (latest)
+1) OS:windows 10
+2) IDE:Visual studio 2019 enterprise
+3) Framework: Asp.Net core 3.1
+4) SDK:Asp.Net core 3.X (latest)
 
 
 Api Documentation:====================================================
