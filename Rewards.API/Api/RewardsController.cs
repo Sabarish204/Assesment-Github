@@ -17,20 +17,6 @@ namespace Rewards.API.Api
         [HttpGet("CalculateRewardPoints/{spentMoney}")]
         public IActionResult CalculateRewardPoints(decimal spentMoney)
         {
-            try
-            {
-
-            }
-            catch (System.DivideByZeroException)
-            {
-
-                throw;
-            }
-            catch (System.Exception)
-            {
-
-                throw;
-            }
             long points = _iBal.CalculateRewardPoints(spentMoney);
             RewardPoints pts = new RewardPoints() { Points = points };
             return Ok(pts);

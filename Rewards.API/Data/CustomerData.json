@@ -1,0 +1,100 @@
+{
+  "Customers": [
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 120,
+      "TransactionDate": "04-01-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 75,
+      "TransactionDate": "04-21-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 94,
+      "TransactionDate": "04-22-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 10,
+      "TransactionDate": "03-01-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 75,
+      "TransactionDate": "03-21-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 200,
+      "TransactionDate": "02-01-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 1,
+      "TransactionDate": "02-04-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 80,
+      "TransactionDate": "02-03-2022"
+    },
+    {
+      "CustomerId": 1,
+      "Name": "Dakun",
+      "Amount": 224,
+      "TransactionDate": "02-21-2022"
+    },
+    {
+      "CustomerId": 2,
+      "Name": "Aimee",
+      "Amount": 125,
+      "TransactionDate": "04-01-2022"
+    },
+    {
+      "CustomerId": 2,
+      "Name": "Aimee",
+      "Amount": 75,
+      "TransactionDate": "04-21-2022"
+    },
+    {
+      "CustomerId": 2,
+      "Name": "Aimee",
+      "Amount": 10,
+      "TransactionDate": "03-01-2022"
+    },
+    {
+      "CustomerId": 2,
+      "Name": "Aimee",
+      "Amount": 75,
+      "TransactionDate": "03-21-2022"
+    },
+    {
+      "CustomerId": 2,
+      "Name": "Aimee",
+      "Amount": 200,
+      "TransactionDate": "02-01-2022"
+    },
+    {
+      "CustomerId": 2,
+      "Name": "Aimee",
+      "Amount": 224,
+      "TransactionDate": "02-21-2022"
+    },
+    {
+      "CustomerId": 3,
+      "Name": "Jeff",
+      "Amount": 120,
+      "TransactionDate": "04-21-2022"
+    }
+  ]
+}

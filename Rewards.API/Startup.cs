@@ -1,13 +1,17 @@
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Rewards.API.Filters;
 using Rewards.Business;
 using Serilog;
 using Serilog.Enrichers;
 using Serilog.Events;
+using System;
 using System.IO;
 
 namespace Rewards.API
@@ -36,7 +40,7 @@ namespace Rewards.API
 
         public IConfiguration Configuration { get; }
 
-      
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen();
@@ -49,9 +53,29 @@ namespace Rewards.API
             services.AddScoped<IBal, Bal>();
 
             services.AddControllersWithViews();
+
+            services.AddHealthChecks()
+                    .AddUrlGroup(new Uri("https://localhost:44391/api/Rewards/CalculateRewardPoints/20"),
+                    "CalculateRewardPoints",
+                    HealthStatus.Degraded);
+
+
+
+
+            services.AddHealthChecksUI(opt =>
+            {
+                opt.SetEvaluationTimeInSeconds(10); //time in seconds between check    
+                opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks    
+                opt.SetApiMaxActiveRequests(1); //api requests concurrency    
+                opt.AddHealthCheckEndpoint("API", "/api/health"); //map health check api    
+            })
+           .AddInMemoryStorage();
+
+
+
         }
 
-      
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();
@@ -71,7 +95,7 @@ namespace Rewards.API
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                
+
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -86,6 +110,19 @@ namespace Rewards.API
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHealthChecks("/api/health",
+                                                new HealthCheckOptions()
+                                                {
+                                                    Predicate = _ => true,
+                                                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                                                });
+            });
+
+            app.UseHealthChecksUI(options =>
+            {
+                options.UIPath = "/healthchecks-ui";
+                options.ApiPath = "/health-ui-api";
             });
         }
     }
