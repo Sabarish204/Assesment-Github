@@ -10,19 +10,28 @@ namespace Rewards.Business
 {
     public class Bal : IBal
     {
-        public long CalculateRewardPoints(decimal spentMoney)
+        public long CalculateRewardPoints(string spentMoney)
         {
             long points = 0;
-            long spentMoneyTemp = (long)spentMoney;
-            if (spentMoneyTemp > 50 && spentMoneyTemp <= 100)
+            try
             {
-                points = spentMoneyTemp * 1;
+                decimal money = decimal.Parse(spentMoney);
+                long spentMoneyTemp = (long)money;
+                if (spentMoneyTemp > 50 && spentMoneyTemp <= 100)
+                {
+                    points = spentMoneyTemp * 1;
+                }
+                if (spentMoneyTemp > 100)
+                {
+                    points = (spentMoneyTemp - 50) * 1 + (spentMoneyTemp - 100) * 1;
+                }
+                return points;
             }
-            if (spentMoneyTemp > 100)
+            catch (Exception ex)
             {
-                points = (spentMoneyTemp - 50) * 1 + (spentMoneyTemp - 100) * 1;
+                string message = ex.Message;
+                throw;
             }
-            return points;
         }
 
 
@@ -50,7 +59,7 @@ namespace Rewards.Business
         private Customer ReadDatafromJson()
         {
             Customer customer = null;
-            using (StreamReader r = new StreamReader("Data/CustomerData.json"))
+            using (StreamReader r = new StreamReader("Resources/CustomerData.json"))
             {
                 string json = r.ReadToEnd();
                 customer = JsonConvert.DeserializeObject<Customer>(json);

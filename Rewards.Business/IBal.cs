@@ -6,7 +6,7 @@ namespace Rewards.Business
 {
     public interface IBal
     {
-        Int64 CalculateRewardPoints(decimal spentMoney);
+        Int64 CalculateRewardPoints(string spentMoney);
         List<CustomerMonthlyWise> CustomerRewardsReport();
     }
 }

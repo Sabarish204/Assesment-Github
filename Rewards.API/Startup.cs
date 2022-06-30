@@ -6,32 +6,31 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Rewards.API.Filters;
+using Rewards.API.Logging;
 using Rewards.Business;
-using Serilog;
-using Serilog.Enrichers;
-using Serilog.Events;
 using System;
-using System.IO;
 
 namespace Rewards.API
 {
     public class Startup
     {
+        private string _environmentPath;
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-
-            #region Logging configuration
-            string path = env.ContentRootPath;
-            const string loggerTemplate = @"{Timestamp:yyyy-MM-dd HH:mm:ss}|[{Level:u4}]|<{ThreadId}>|{Message:lj}{NewLine}{Exception}";
-            var logfile = Path.Combine(path + "\\" + "Logs\\", "log-.txt");
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .Enrich.With(new ThreadIdEnricher())
-                .Enrich.FromLogContext()
-                .WriteTo.File(logfile, LogEventLevel.Information, loggerTemplate, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 1000)
-                .CreateLogger();
-            #endregion
+            _environmentPath = env.ContentRootPath;
+            //#region Logging configuration
+            //string path = env.ContentRootPath;
+            //const string loggerTemplate = @"{Timestamp:yyyy-MM-dd HH:mm:ss}|[{Level:u4}]|<{ThreadId}>|{Message:lj}{NewLine}{Exception}";
+            //var logfile = Path.Combine(path + "\\" + "Logs\\", "log-.txt");
+            //Log.Logger = new LoggerConfiguration()
+            //    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            //    .Enrich.With(new ThreadIdEnricher())
+            //    .Enrich.FromLogContext()
+            //    .WriteTo.File(logfile, LogEventLevel.Information, loggerTemplate, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 1000)
+            //    .CreateLogger();
+            //#endregion
 
 
 
@@ -43,6 +42,10 @@ namespace Rewards.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddSingleton<ILoggerProvider, FileLoggerProvider>();
+            services.Configure<FileLoggerOptions>(Configuration.GetSection("Logging").GetSection("CustomLogging").GetSection("Options"));
+
             services.AddSwaggerGen();
             services.AddMvc(config => { config.Filters.Add(typeof(GlobalExceptionFilter)); })
             .AddJsonOptions(options =>

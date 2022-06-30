@@ -11,7 +11,7 @@ namespace Rewards.Contract
     {
         public int CustomerId { get; set; }
         public string Name { get; set; }
-        public decimal Amount { get; set; }
+        public string Amount { get; set; }
         public DateTime TransactionDate { get; set; }
         public double Rewards { get; set; }
     }
