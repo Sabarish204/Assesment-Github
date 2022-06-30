@@ -51,6 +51,8 @@
     <li><a href="#health-check">Health Check</a></li>
     <li><a href="#deployment">Deployment</a></li>
     <li><a href="#customerrewardsreport-page">Customerrewardsreport Page</a></li>
+    <li><a href="#api-document">Api Document</a></li>
+    <li><a href="#cutom-logging">Custom Logging</a></li>
   </ol>
 </details>
 
@@ -168,6 +170,27 @@ Donwload and install the visual studio (2019/2022) & .Net Core Sdk 3.X from belo
 2. Below is the screenshot
 
 ![dataset_image](https://user-images.githubusercontent.com/100580561/170330268-eb13a98c-caa1-4d02-bf42-ac85cca10171.jpg)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+## Api Document
+
+1. Url      : https://localhost:44391/api/Rewards/CalculateRewardPoints/{spentMoney}
+2. Parameter: "{spentMoney}" is the parameter we have to pass as query param. Ex:690
+3. Type     : GET
+4. Response : { "Points": 1230 }
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Custom Logging
+
+1. In appsettings.json file we have to modify "FolderPath" based on our system.
+2. Here i used "G" drive.
+3. Don't use "C" drive for logs folder creation. It won't allow.
+
+![appsettings_img](https://user-images.githubusercontent.com/100580561/176670953-503c0fb0-ed65-4f7e-ae67-1994fa46e52d.PNG)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
